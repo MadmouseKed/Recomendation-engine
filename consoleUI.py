@@ -1,9 +1,20 @@
-import dataUIT
-import dataIN
+
+
 
 def testMenuUI():
-    print(f'''
+    print('''
     #============================================================================================#\n
-    
+    Maak een keuze voor het testen
+    1: Login automatisch.
     #============================================================================================#\n
     ''')
+
+def autoLoginUpdateUI():
+    print('''
+        #============================================================================================#\n
+        Maak de volgende keuzes om de autologin te updaten met nieuwe informatie.
+        1: gebruikersnaam
+        2: wachtwoord
+        3: Done
+        #============================================================================================#\n
+        ''')

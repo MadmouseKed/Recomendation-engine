@@ -1,0 +1,1 @@
+{"gebruiker": "root", "wachtwoord": "", "dbNaam": "test", "host": "localhost"}

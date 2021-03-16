@@ -24,4 +24,4 @@ def mysqlSluit(db, cursor):
     db.commit()
     db.close()
 
-def mysql
+# def mysqlTableInformatie():
