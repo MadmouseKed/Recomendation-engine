@@ -1,18 +1,10 @@
 from dataIN import *
-from dataUIT import *
-from consoleUI import *
-import dataUIT
 import json
-import mysql
 
 def mysqlSluit(db, cursor):
     cursor.close()
     db.commit()
     db.close()
-
-# def mysqlCommit(tabelInfo, db, cursor, tabelNaam, *column):
-#     cursor.execute("CREATE TABLE " + tabelNaam + " (id VARCHAR(255) PRIMARY KEY UNIQUE, price INTEGER(10), stock INTEGER(10), flavor VARCHAR(255) NULL, kleur VARCHAR(255) NULL, recomendable BIT(10), fast_mover BIT(10), gender_id_key INTEGER(10), doelgroep_id_key INTEGER(10), brand_id_key INTEGER(10), main_category_id_key INTEGER(10), sub_category_id_key INTEGER(10), FOREIGN KEY(gender_id_key) REFERENCES gender(id), FOREIGN KEY(brand_id_key) REFERENCES brand(id), FOREIGN KEY(main_category_id_key) REFERENCES main_category(id), FOREIGN KEY(doelgroep_id_key) REFERENCES doelgroep(id), FOREIGN KEY(sub_category_id_key) REFERENCES sub_category(id))")
-#     insertWaarden(tabelInfo, db, cursor, tabelNaam, "id", "price", "stock", "flavor", "kleur", "recomendable", "fast_mover", "gender_id_key", "doelgroep_id_key", "brand_id_key", "main_category_id_key", "sub_category_id_key")
 
 def insertWaarden(tabelInfo, db, cursor, tabel, *column):
     """"
@@ -56,7 +48,6 @@ def pakTables(cursor):
     return tablesLijst
 
 def leesColumns(cursor, tabelNaam):
-    tablesLijst = []
     cursor.execute("SHOW COLUMNS FROM " +tabelNaam)
     info = cursor.fetchall()
     resultaat = []
@@ -70,12 +61,6 @@ def tabelInformatie(tabel, cursor):
     ophaal = cursor.fetchall()
 
     return ophaal
-
-def regelMaker(cursor, db):
-    regel = []
-    execute = regelMakerUI(cursor, db)
-
-    return regel
 
 def voorstelVerwerking(regel, data, columns, cursor):
     """"
@@ -127,14 +112,11 @@ def retrieve_tabel_data(table, cursor):
     :param db:
     :return:
     """
-    # divine a dictonary
     result_dict = {}
 
-    # retrieve all items from selected table
     cursor.execute("SELECT * FROM " + table)
     myresult = cursor.fetchall()
 
-    # for each item in myresult
     for item in myresult:
         result_dict[item[1]] = item[0]
     return result_dict
@@ -142,21 +124,14 @@ def retrieve_tabel_data(table, cursor):
 def testCase(testcase):
     loginInfo = autoLogin()
     db, cursor = mysqlConnectie(loginInfo)
-
-    # testMenu()
-    # testcase = [["brand", "Maya", "Famosa", "Familie Pos"]]
     a = voorstel(testcase, "products", cursor)
     tabelInfo = a
     tabelNaam = "testTabel1"
-    print(a)
     mysqlCommit(tabelInfo, db, cursor, tabelNaam)
 
 
     mysqlSluit(db, cursor)
     # show
-#
-# testcase = [["brand", "Maya", "Famosa", "Familie Pos"]]
+
 testcase = [["brand", "Maya", "Famosa", "Familie Pos"],["doelgroep", "Kinderen"]]
 testCase(testcase)
-
-# testMenu()
