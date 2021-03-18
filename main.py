@@ -1,5 +1,5 @@
-import dataUIT
-import dataIN
+from dataIN import *
+from dataUIT import *
 from consoleUI import *
 import json
 import mysql
@@ -70,13 +70,30 @@ def tabelInformatie(tabel, db, cursor):
     cursor.execute("SELECT * FROM " + tabel)
     ophaal = cursor.fetchall()
 
-    print(ophaal)
+    return ophaal
+
+def regelMaker():
+    prin("hoi")
+
+
+
+    return regels
+
+def voorstel(regels, informatie):
+    pritn("hoi")
+    for regel in regels:
+        print(regel)
+
 
 def testCase():
     loginInfo = autoLogin()
     db, cursor = mysqlConnectie(loginInfo)
     tabLijst = pakTables(cursor)
-    print(tabelInformatie("Brand", db, cursor))
+    test = tabelInformatie("brand", db, cursor)
+    test2 = tabelInformatie("gender", db, cursor)
+    print(test)
+    print(test2)
+
     print(tabLijst)
     mysqlSluit(db, cursor)
 
