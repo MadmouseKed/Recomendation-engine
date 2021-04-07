@@ -1,1 +1,1 @@
-{"gebruiker": "root", "wachtwoord": "", "dbNaam": "test", "host": "localhost"}
+{"host": "localhost", "gebruiker": "root", "wachtwoord": "", "dbNaam": "test"}
